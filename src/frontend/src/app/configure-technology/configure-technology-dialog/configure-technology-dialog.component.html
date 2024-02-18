@@ -1,0 +1,29 @@
+<div>
+    <h1>Add a Technology</h1>
+    <form name="form" (ngSubmit)="myform.form.valid && onSubmit(myform.form.value)" #myform="ngForm" novalidate>
+        <label>Name</label>
+        <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" />
+
+        <div class="form-group">
+            <label for="category">Category</label>
+            <select class="form-control" id="category" required [(ngModel)]="model.category" name="category">
+                <option value="" disabled selected>Select the category.</option>
+                <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="ring">Ring</label>
+            <select class="form-control" id="ring" required [(ngModel)]="model.ring" name="ring">
+                <option value="" disabled selected>Select the ring.</option>
+                <option *ngFor="let ring of rings" [value]="ring">{{ring}}</option>
+            </select>
+        </div>
+
+        <label>Description</label>
+        <input type="text" class="form-control" id="description" required [(ngModel)]="model.description"
+            name="description" />
+
+        <mat-checkbox class="form-control" id="published" [(ngModel)]="model.published" name="published">Publish
+            technology?</mat-checkbox>
+        <button class="button" type="submit">Save Technology</button>
+    </form>

@@ -1,0 +1,5 @@
+<p>technologies works!</p>
+<div>{{(publishedTechnologies$ | async) | json}}</div>
+<li *ngFor="let technology of publishedTechnologies$ | async">
+    <span class="name">{{technology.name}}</span>
+</li>
