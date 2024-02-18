@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { login } from "../services/loginService"
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import { JWTUser } from "../types/authentication";
 
 export const loginUser = async (req: Request, res: Response) => {
     let { username, password } = req.body;
@@ -10,7 +11,6 @@ export const loginUser = async (req: Request, res: Response) => {
     if (!user) {
         return res.status(400).send("No user like this exists in our databse.");
     }
-    // why does it not stop after this
     const result = await bcrypt.compare(password, user.password);
     if (result == false) {
         return res.status(403).send("Wrong password.");
@@ -23,8 +23,9 @@ export const loginUser = async (req: Request, res: Response) => {
         token = jwt.sign(
             {
                 userId: user.id,
-                username: user.username
-            },
+                username: user.username,
+                role: user.role
+            } as JWTUser,
             "secretkeyappearshere",
             { expiresIn: "1h" }
         );

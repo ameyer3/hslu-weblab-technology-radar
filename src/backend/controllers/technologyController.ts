@@ -3,14 +3,19 @@ import { fetchAllTechnologies, addNewTechnology, putTechnology } from "../servic
 import { Technology } from "../types/technology";
 
 export const getAllTechnologies = async (req: Request, res: Response) => {
-    const published = (req.query["published"] ?? null) as boolean | null;
+    let published = (<unknown>req.query["published"] ?? null) as boolean | null;
+    if (req.user.role != "CTO") {
+        published = true;
+    }
     const allTechnologies = await fetchAllTechnologies(published);
     res.send(allTechnologies);
 }
 
 
 export const createNewTechnology = async (req: Request, res: Response) => {
-    console.log(req);
+    if (req.user.role != "CTO") {
+        return res.status(403).send("Unauthorized");
+    }
     const { body } = req;
     if (!body.name || !body.category || !body.ring || !body.description) {
 
@@ -33,6 +38,9 @@ export const createNewTechnology = async (req: Request, res: Response) => {
 }
 
 export const updateTechnology = async (req: Request, res: Response) => {
+    if (req.user.role != "CTO") {
+        return res.status(403).send("Unauthorized");
+    }
     const { body } = req;
     if (!body.id || !body.name || !body.category || !body.ring || !body.description) {
 
