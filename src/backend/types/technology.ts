@@ -3,7 +3,7 @@ export interface Technology {
     category: string;
     ring: string;
     description: string;
-    author: string;
+    author: number;
     creationDate: Date;
     published: boolean;
 }

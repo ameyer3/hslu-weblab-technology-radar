@@ -33,7 +33,7 @@ export const createNewTechnology = async (newTechnology: Technology) => {
 export const updateTechnology = async (updatedTechnology: any, techId: number) => {
     // TODO Historisierung mit extra tabelle? darin sind author, datum, techId, alte begruendung wieso alter ring
     const { name, category, ring, description, creationDate, author, published } = updatedTechnology;
-    pool.query("UPDATE technology SET name=$1, category=$2, ring=$3, description=$4, creationDate=$5, author=$6, published=$7 WHERE id=$8",
+    pool.query("UPDATE technology SET name = $1, category = $2, ring = $3, description = $4, creationDate = $5, author = $6, published = $7 WHERE id = $8",
         [name, category, ring, description, creationDate, author, published, techId], (error, results) => {
             if (error) {
                 throw error

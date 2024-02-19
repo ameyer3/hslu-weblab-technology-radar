@@ -1,10 +1,15 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <h1>{{title}}</h1>
-<nav>
-    <a routerLink="/technologies">Technologies</a>
-    <a routerLink="/configuration">Configure Technologies</a>
-    <a routerLink="/login">Login</a>
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <span><a routerLink="/technologies">Technologies</a></span>
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+        <span><a routerLink="/configuration">Configure Technologies</a></span>
+    </mat-toolbar-row>
+    <mat-toolbar-row class="login-nav">
+        <span><a routerLink="/login">Login</a></span>
+    </mat-toolbar-row>
+</mat-toolbar>
 
-
-</nav>
 <router-outlet></router-outlet>

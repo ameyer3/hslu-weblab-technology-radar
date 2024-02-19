@@ -10,8 +10,8 @@ describe('ConfigureTechnologyDialogComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ConfigureTechnologyDialogComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(ConfigureTechnologyDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

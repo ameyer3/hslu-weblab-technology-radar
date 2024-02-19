@@ -1,0 +1,13 @@
+mat-toolbar {
+    display: flex;
+    flex-direction: row;
+}
+
+mat-toolbar>mat-toolbar-row {
+    width: auto;
+}
+
+.login-nav {
+    justify-content: end;
+    flex-grow: 5;
+}

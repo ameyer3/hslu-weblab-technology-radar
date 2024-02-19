@@ -28,7 +28,7 @@ export const createNewTechnology = async (req: Request, res: Response) => {
         "ring": body.ring,
         "description": body.description,
         "creationDate": new Date(),
-        "author": "TODO",
+        "author": req.user.userId,
         "published": body.published,
 
     }
@@ -51,10 +51,10 @@ export const updateTechnology = async (req: Request, res: Response) => {
         "ring": body.ring,
         "description": body.description,
         "creationDate": new Date(),
-        "author": "TODO",
+        "author": req.user.userId,
         "published": body.published,
 
     }
     const id = await putTechnology(updatedTechnology, body.id);
-    res.status(200).send(`User modified with ID ${id}`);
+    res.status(200).send(updatedTechnology);
 }
