@@ -4,7 +4,7 @@ import { Technology } from "../types/technology";
 
 export const getAllTechnologies = async (req: Request, res: Response) => {
     let published = (<unknown>req.query["published"] ?? null) as boolean | null;
-    if (req.user.role != "CTO") {
+    if (req.user.role == "user") {
         published = true;
     }
     const allTechnologies = await fetchAllTechnologies(published);
@@ -13,7 +13,7 @@ export const getAllTechnologies = async (req: Request, res: Response) => {
 
 
 export const createNewTechnology = async (req: Request, res: Response) => {
-    if (req.user.role != "CTO") {
+    if (req.user.role == "user") {
         return res.status(403).send("Unauthorized");
     }
     const { body } = req;
@@ -38,7 +38,7 @@ export const createNewTechnology = async (req: Request, res: Response) => {
 }
 
 export const updateTechnology = async (req: Request, res: Response) => {
-    if (req.user.role != "CTO") {
+    if (req.user.role == "user") {
         return res.status(403).send("Unauthorized");
     }
     const { body } = req;
