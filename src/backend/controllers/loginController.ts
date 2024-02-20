@@ -8,12 +8,9 @@ export const loginUser = async (req: Request, res: Response) => {
     let { username, password } = req.body;
     console.log(req.body);
     let user = await login(username);
-    if (!user) {
-        return res.status(400).send("No user like this exists in our databse.");
-    }
     const result = await bcrypt.compare(password, user.password);
-    if (result == false) {
-        return res.status(403).send("Wrong password.");
+    if (result == false || !user) {
+        return res.status(403).send("Wrong username or password.");
     }
 
 

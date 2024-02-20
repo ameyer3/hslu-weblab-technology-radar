@@ -16,10 +16,15 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>Ring</mat-label>
-            <mat-select required [(ngModel)]="model.ring" name="ring">
+            <mat-select [(ngModel)]="model.ring" name="ring">
                 <mat-option *ngFor="let ring of rings" [value]="ring">{{ring}}</mat-option>
 
             </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Ring Description</mat-label>
+            <input matInput id="ringdescription" [(ngModel)]="model.ringdescription" name="ringdescription" />
         </mat-form-field>
 
         <mat-form-field>
@@ -27,9 +32,9 @@
             <input matInput id="description" required [(ngModel)]="model.description" name="description" />
         </mat-form-field>
 
-        <mat-checkbox class="form-control" id="published" [(ngModel)]="model.published" name="published">Publish
+        <!-- <mat-checkbox class="form-control" id="published" [(ngModel)]="model.published" name="published">Publish
             technology?
-        </mat-checkbox>
+        </mat-checkbox> -->
 
         <button mat-flat-button color="primary" type="submit">Save Technology</button>
 

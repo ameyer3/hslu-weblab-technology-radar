@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { fetchAllTechnologies, addNewTechnology, putTechnology } from "../services/technologyService";
+import { fetchAllTechnologies, addNewTechnology, putTechnology, publishTechnology } from "../services/technologyService";
 import { Technology } from "../types/technology";
 
 export const getAllTechnologies = async (req: Request, res: Response) => {
@@ -26,10 +26,12 @@ export const createNewTechnology = async (req: Request, res: Response) => {
         "name": body.name,
         "category": body.category,
         "ring": body.ring,
+        "ringdescription": body.ringdescription,
         "description": body.description,
         "creationDate": new Date(),
-        "author": req.user.userId,
-        "published": body.published,
+        "creationAuthor": req.user.userId,
+        "updateAuthor": req.user.userId,
+        "published": false,
 
     }
     console.log(newTechnology);
@@ -44,17 +46,33 @@ export const updateTechnology = async (req: Request, res: Response) => {
     const { body } = req;
     if (!body.id || !body.name || !body.category || !body.ring || !body.description) {
 
+
     }
     const updatedTechnology: Technology = {
         "name": body.name,
         "category": body.category,
         "ring": body.ring,
+        "ringdescription": body.ringdescription,
         "description": body.description,
-        "creationDate": new Date(),
-        "author": req.user.userId,
-        "published": body.published,
-
+        "updateAuthor": req.user.userId,
     }
     const id = await putTechnology(updatedTechnology, body.id);
     res.status(200).send(updatedTechnology);
+}
+
+export const updatePublishTechnology = async (req: Request, res: Response) => {
+    if (req.user.role == "user") {
+        return res.status(403).send("Unauthorized");
+    }
+    const { body } = req;
+    let published = body.published;
+    let publishingDate: Date | undefined = undefined
+    if (published) {
+        publishingDate = new Date();
+    }
+    const techId = body.id;
+    const updateAuthor = req.user.userId;
+    const id = await publishTechnology(published, publishingDate, updateAuthor, techId);
+    res.status(200).send({ "id": id });
+
 }

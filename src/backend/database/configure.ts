@@ -19,9 +19,9 @@ export const getAllTechnologies = async (published: boolean | null) => {
 }
 
 export const createNewTechnology = async (newTechnology: Technology) => {
-    const { name, category, ring, description, creationDate, author, published } = newTechnology;
-    pool.query("INSERT INTO technology (name, category, ring, description, creationDate, author, published) VALUES ($1, $2, $3, $4, $5, $6, $7)",
-        [name, category, ring, description, creationDate, author, published], (error, results) => {
+    const { name, category, ring, ringdescription, description, creationDate, creationAuthor, updateAuthor, published } = newTechnology;
+    pool.query("INSERT INTO technology (name, category, ring, ringdescription, description, creationDate, creationAuthor, updateAuthor, published) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)",
+        [name, category, ring, ringdescription, description, creationDate, creationAuthor, updateAuthor, published], (error, results) => {
             if (error) {
                 throw error
             }
@@ -32,9 +32,9 @@ export const createNewTechnology = async (newTechnology: Technology) => {
 
 export const updateTechnology = async (updatedTechnology: any, techId: number) => {
     // TODO Historisierung mit extra tabelle? darin sind author, datum, techId, alte begruendung wieso alter ring
-    const { name, category, ring, description, creationDate, author, published } = updatedTechnology;
-    pool.query("UPDATE technology SET name = $1, category = $2, ring = $3, description = $4, creationDate = $5, author = $6, published = $7 WHERE id = $8",
-        [name, category, ring, description, creationDate, author, published, techId], (error, results) => {
+    const { name, category, ring, ringdescription, description, updateAuthor } = updatedTechnology;
+    pool.query("UPDATE technology SET name = $1, category = $2, ring = $3, ringdescription = $4, description = $5, updateAuthor = $6 WHERE id = $7",
+        [name, category, ring, ringdescription, description, updateAuthor, techId], (error, results) => {
             if (error) {
                 throw error
             }
@@ -42,5 +42,16 @@ export const updateTechnology = async (updatedTechnology: any, techId: number) =
 
         })
     return techId;
+}
 
+export const updatePublishTechnology = async (published: boolean, publishingDate: Date | undefined, updateAuthor: number, techId: number) => {
+    pool.query("UPDATE technology SET published = $1, publishingDate = $2, updateAuthor = $3 WHERE id = $4",
+        [published, publishingDate, updateAuthor, techId], (error, results) => {
+            if (error) {
+                throw error
+            }
+
+
+        })
+    return techId;
 }

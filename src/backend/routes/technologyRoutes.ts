@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response, Router } from "express";
-import { getAllTechnologies, createNewTechnology, updateTechnology } from "../controllers/technologyController";
+import { getAllTechnologies, createNewTechnology, updateTechnology, updatePublishTechnology } from "../controllers/technologyController";
 import jwt from "jsonwebtoken"
 import { JWTUser } from "../types/authentication";
 
@@ -32,6 +32,7 @@ const router = Router();
 router.get("/", authenticateToken, getAllTechnologies);
 router.post("/", authenticateToken, createNewTechnology);
 router.put("/", authenticateToken, updateTechnology);
+router.put("/publish", authenticateToken, updatePublishTechnology);
 
 
 export const TechnologyRouter = router;

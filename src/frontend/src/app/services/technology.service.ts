@@ -7,6 +7,7 @@ export interface Technology {
     name: string;
     category: string;
     ring: string;
+    ringdescription: string;
     description: string;
     // author: string;
     // creationDate: Date;
@@ -30,6 +31,9 @@ export class TechnologyService {
     }
     updateTechnology(technology: Technology): Observable<Technology> {
         return this.http.put<Technology>('http://localhost:3000/api/technologies', technology);
+    }
+    updatePublishTechnology(technology: Technology): Observable<Technology> {
+        return this.http.put<Technology>('http://localhost:3000/api/technologies/publish', technology);
     }
 
 }

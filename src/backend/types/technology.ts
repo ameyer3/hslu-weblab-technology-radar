@@ -1,9 +1,24 @@
 export interface Technology {
     name: string;
     category: string;
-    ring: string;
+    ring?: string;
+    ringdescription?: string;
     description: string;
-    author: number;
-    creationDate: Date;
-    published: boolean;
+    creationAuthor?: number;
+    updateAuthor: number;
+    creationDate?: Date;
+    published?: boolean;
+    publishingDate?: Date;
+}
+
+export interface History {
+    technologyId: number;
+    name: string;
+    category: string;
+    ring: string;
+    ringdescription: string;
+    description: string;
+    published: boolean
+    updateDate: Date;
+    updateAuthor: number;
 }

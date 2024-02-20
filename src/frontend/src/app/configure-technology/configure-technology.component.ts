@@ -33,12 +33,10 @@ import { MatDialog } from '@angular/material/dialog'
 })
 export class ConfigureTechnologyComponent {
 
-  rings = ["Assess", "Trial", "Adopt", "Hold"];
-  categories = ["Techniques", "Tools", "Platforms", "Languages & Frameworks"];
-  public allTechnologies$: Observable<Technology[]>
-  displayedColumns: string[] = ['name', 'category', 'ring', 'description', 'published', 'edit'];
-  private loadTechnologies$ = new BehaviorSubject<void>(undefined);
 
+  public allTechnologies$: Observable<Technology[]>
+  displayedColumns: string[] = ['name', 'category', 'ring', 'ringdescription', 'description', 'published', 'edit'];
+  private loadTechnologies$ = new BehaviorSubject<void>(undefined);
 
   constructor(private techService: TechnologyService,
     private dialog: MatDialog) {
@@ -47,13 +45,9 @@ export class ConfigureTechnologyComponent {
   }
 
 
-  onSubmit(tech: Technology): void {
-    console.log(tech);
-    this.techService.createNewTechnology(tech).subscribe();
-  }
   editTechnology(technology?: Technology): void {
     if (technology === undefined) {
-      technology = { id: 0, name: "", description: "", category: "", ring: "", published: false };
+      technology = { id: 0, name: "", description: "", ringdescription: "", category: "", ring: "", published: false };
     }
     console.log(technology)
     const dialogRef = this.dialog.open(ConfigureTechnologyDialogComponent, {
@@ -61,6 +55,16 @@ export class ConfigureTechnologyComponent {
       width: '40%',
     })
     lastValueFrom(dialogRef.afterClosed().pipe(tap(c => this.loadTechnologies$.next())))
+  }
+
+  publish(technology: Technology): void {
+    if (technology.ring !== "" && technology.ringdescription !== "") {
+      technology.published = !technology.published;
+      this.techService.updatePublishTechnology(technology).subscribe();
+    }
+    else {
+      alert("Please fill in the ring and ring description first");
+    }
   }
 
 }

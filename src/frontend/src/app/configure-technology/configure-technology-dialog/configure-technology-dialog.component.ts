@@ -56,4 +56,6 @@ export class ConfigureTechnologyDialogComponent {
     this.dialog.close()
   }
 
+
+
 }
