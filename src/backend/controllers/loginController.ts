@@ -13,6 +13,7 @@ export const loginUser = async (req: Request, res: Response) => {
         return res.status(403).send("Wrong username or password.");
     }
 
+    // TODO: SECRET
 
     let token;
     try {

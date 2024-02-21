@@ -18,7 +18,8 @@ export interface History {
     ring: string;
     ringdescription: string;
     description: string;
-    published: boolean
+    published: boolean;
+    publishingDate: Date;
     updateDate: Date;
     updateAuthor: number;
 }

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { fetchAllTechnologies, addNewTechnology, putTechnology, publishTechnology } from "../services/technologyService";
-import { Technology } from "../types/technology";
+import { fetchAllTechnologies, addNewTechnology, putTechnology, publishTechnology, getCurrentTechnology, addHistory } from "../services/technologyService";
+import { Technology, History } from "../types/technology";
 
 export const getAllTechnologies = async (req: Request, res: Response) => {
     let published = (<unknown>req.query["published"] ?? null) as boolean | null;
@@ -18,6 +18,9 @@ export const createNewTechnology = async (req: Request, res: Response) => {
     }
     const { body } = req;
     if (!body.name || !body.category || !body.ring || !body.description) {
+
+    }
+    if (body.ring && !body.ringdescription) {
 
     }
     // check that category and ring are part of the 4 options
@@ -48,6 +51,10 @@ export const updateTechnology = async (req: Request, res: Response) => {
 
 
     }
+    if (body.ring && !body.ringdescription) {
+
+    }
+
     const updatedTechnology: Technology = {
         "name": body.name,
         "category": body.category,
@@ -56,6 +63,7 @@ export const updateTechnology = async (req: Request, res: Response) => {
         "description": body.description,
         "updateAuthor": req.user.userId,
     }
+    await updateHistory(body.id, req.user.userId);
     const id = await putTechnology(updatedTechnology, body.id);
     res.status(200).send(updatedTechnology);
 }
@@ -72,7 +80,26 @@ export const updatePublishTechnology = async (req: Request, res: Response) => {
     }
     const techId = body.id;
     const updateAuthor = req.user.userId;
+    await updateHistory(techId, req.user.userId);
     const id = await publishTechnology(published, publishingDate, updateAuthor, techId);
     res.status(200).send({ "id": id });
 
+}
+
+export const updateHistory = async (id: number, userId: number) => {
+    let tech = await getCurrentTechnology(id);
+    console.log(tech);
+    const history: History = {
+        "technologyId": id,
+        "name": tech.name,
+        "category": tech.category,
+        "ring": tech.ring,
+        "ringdescription": tech.ringdescription,
+        "description": tech.description,
+        "published": tech.published,
+        "publishingDate": tech.publishingdate,
+        "updateDate": new Date(),
+        "updateAuthor": userId,
+    }
+    await addHistory(history);
 }

@@ -1,5 +1,5 @@
-import { getAllTechnologies, createNewTechnology, updateTechnology, updatePublishTechnology } from "../database/configure";
-import { Technology } from "../types/technology";
+import { getAllTechnologies, createNewTechnology, updateTechnology, updatePublishTechnology, getTechnologyDetails, addTechHistory } from "../database/configure";
+import { Technology, History } from "../types/technology";
 
 export const fetchAllTechnologies = async (published: boolean | null) => {
     const allTechnologies = await getAllTechnologies(published);
@@ -19,4 +19,13 @@ export const putTechnology = async (updatedTechnology: Technology, techId: numbe
 export const publishTechnology = async (published: boolean, publishingDate: Date | undefined, updateAuthor: number, techId: number) => {
     let id = await updatePublishTechnology(published, publishingDate, updateAuthor, techId)
     return id;;
+}
+
+export const getCurrentTechnology = async (id: number) => {
+    let tech = await getTechnologyDetails(id);
+    return tech;
+}
+
+export const addHistory = async (history: History) => {
+    await addTechHistory(history);
 }

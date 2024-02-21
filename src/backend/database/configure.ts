@@ -1,5 +1,5 @@
 import { Pool } from "pg"
-import { Technology } from "../types/technology";
+import { Technology, History } from "../types/technology";
 
 export const pool = new Pool({
     user: 'admin',
@@ -54,4 +54,20 @@ export const updatePublishTechnology = async (published: boolean, publishingDate
 
         })
     return techId;
+}
+
+export const getTechnologyDetails = async (id: number) => {
+    const results = await pool.query(`SELECT * FROM technology WHERE id = ${id}`);
+    console.log(results.rows[0]);
+    return results.rows[0]
+}
+
+export const addTechHistory = async (history: History) => {
+    const { technologyId, name, category, ring, ringdescription, description, updateDate, updateAuthor, published, publishingDate } = history;
+    pool.query("INSERT INTO history (technologyId, name, category, ring, ringdescription, description, updateDate, updateAuthor, published, publishingDate) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)",
+        [technologyId, name, category, ring, ringdescription, description, updateDate, updateAuthor, published, publishingDate], (error, results) => {
+            if (error) {
+                throw error
+            }
+        })
 }
