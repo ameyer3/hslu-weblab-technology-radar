@@ -1,17 +1,19 @@
-<form name="form" (ngSubmit)="myform.form.valid && onSubmit(myform.form.value)" #myform="ngForm" novalidate>
+<div class="content">
+    <form name="form" (ngSubmit)="myform.form.valid && onSubmit(myform.form.value)" #myform="ngForm" novalidate>
 
-    <mat-form-field>
-        <mat-label>Username</mat-label>
-        <input matInput [(ngModel)]="model.username" name="username" required>
-    </mat-form-field>
-    <mat-form-field>
-        <mat-label>Password</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="model.password" name="password" required>
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-            [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
-    </mat-form-field>
-    <button mat-flat-button color="primary" type="submit">Login</button>
+        <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input matInput [(ngModel)]="model.username" name="username" required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="model.password" name="password" required>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+        <button mat-flat-button color="primary" type="submit">Login</button>
 
-</form>
+    </form>
+</div>

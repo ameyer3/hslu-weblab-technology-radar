@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { User, LoginService } from '../services/login.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,11 +21,13 @@ export class LoginComponent {
   hide = true;
   model: User = { username: "", password: "" }
 
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService, private router: Router) {
 
   }
 
   onSubmit(user: User): void {
     this.loginService.loginUser(user).subscribe();
+    // only do this if resposne is 200 from the one above
+    this.router.navigate(["/technologies"]);
   }
 }

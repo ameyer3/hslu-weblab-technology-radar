@@ -14,7 +14,7 @@ import { MatTableModule } from '@angular/material/table';
 })
 export class TechnologiesComponent {
   public publishedTechnologies$: Observable<Technology[]>
-  displayedColumns: string[] = ['name', 'category', 'ring', 'description'];
+  displayedColumns: string[] = ['name', 'category', 'description', 'ring', 'ringdescription'];
 
   //order by
   // filter

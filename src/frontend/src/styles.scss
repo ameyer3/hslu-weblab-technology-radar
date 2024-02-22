@@ -26,3 +26,13 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+form {
+    display: flex;
+    flex-direction: column;
+    // padding: 2%;
+}
+
+.content {
+    margin: 1%;
+}

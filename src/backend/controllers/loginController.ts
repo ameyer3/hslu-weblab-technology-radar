@@ -6,10 +6,12 @@ import { JWTUser } from "../types/authentication";
 
 export const loginUser = async (req: Request, res: Response) => {
     let { username, password } = req.body;
-    console.log(req.body);
     let user = await login(username);
+    if (!user) {
+        return res.status(403).send("Wrong username or password.");
+    }
     const result = await bcrypt.compare(password, user.password);
-    if (result == false || !user) {
+    if (result == false) {
         return res.status(403).send("Wrong username or password.");
     }
 
@@ -27,6 +29,8 @@ export const loginUser = async (req: Request, res: Response) => {
             "secretkeyappearshere",
             { expiresIn: "1h" }
         );
+        console.log(`User ${user.username} logged in at ${new Date()}`)
+
     } catch (err) {
         console.log(err);
         const error =

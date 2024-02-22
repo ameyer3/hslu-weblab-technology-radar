@@ -52,7 +52,7 @@ export class ConfigureTechnologyComponent {
     console.log(technology)
     const dialogRef = this.dialog.open(ConfigureTechnologyDialogComponent, {
       data: { technology },
-      width: '40%',
+      width: '70%',
     })
     lastValueFrom(dialogRef.afterClosed().pipe(tap(c => this.loadTechnologies$.next())))
   }
