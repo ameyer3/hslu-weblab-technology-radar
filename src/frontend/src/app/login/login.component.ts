@@ -26,8 +26,8 @@ export class LoginComponent {
   }
 
   onSubmit(user: User): void {
-    this.loginService.loginUser(user).subscribe();
-    // only do this if resposne is 200 from the one above
-    this.router.navigate(["/technologies"]);
+    this.loginService.loginUser(user).subscribe(() => {
+      this.router.navigate(["/technologies"]);
+    });
   }
 }
