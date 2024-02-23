@@ -11,20 +11,30 @@ export const getAllTechnologies = async (req: Request, res: Response) => {
     res.send(allTechnologies);
 }
 
+const rings = ["Assess", "Trial", "Adopt", "Hold"];
+const categories = ["Techniques", "Tools", "Platforms", "Languages & Frameworks"];
 
 export const createNewTechnology = async (req: Request, res: Response) => {
     if (req.user.role == "user") {
         return res.status(403).send("Unauthorized");
     }
     const { body } = req;
-    if (!body.name || !body.category || !body.ring || !body.description) {
+    if (!body.name || !body.category || !body.description) {
+        return res.status(400).send("Missing values");
+    }
+    if (!categories.includes(body.category)) {
+        return res.status(400).send("Value for category is not valid");
 
     }
-    if (body.ring && !body.ringdescription) {
+    if (body.ring && !rings.includes(body.ring)) {
+        return res.status(400).send("Value for ring is not valid");
 
     }
-    // check that category and ring are part of the 4 options
-    // create author
+    if (body.category)
+        if (body.ring && !body.ringdescription) {
+            return res.status(400).send("If you define a ring, you also need to define a ring description");
+
+        }
     const newTechnology: Technology = {
         "name": body.name,
         "category": body.category,
@@ -47,11 +57,19 @@ export const updateTechnology = async (req: Request, res: Response) => {
         return res.status(403).send("Unauthorized");
     }
     const { body } = req;
-    if (!body.id || !body.name || !body.category || !body.ring || !body.description) {
+    if (!body.name || !body.category || !body.description) {
+        return res.status(400).send("Missing values");
+    }
+    if (!categories.includes(body.category)) {
+        return res.status(400).send("Value for category is not valid");
 
+    }
+    if (body.ring && !rings.includes(body.ring)) {
+        return res.status(400).send("Value for ring is not valid");
 
     }
     if (body.ring && !body.ringdescription) {
+        return res.status(400).send("If you define a ring, you also need to define a ring description");
 
     }
 

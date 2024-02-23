@@ -1,4 +1,4 @@
-import { getAllTechnologies, createNewTechnology, updateTechnology, updatePublishTechnology, getTechnologyDetails, addTechHistory } from "../database/configure";
+import { getAllTechnologies, createNewTechnology, updateTechnology, updatePublishTechnology, getTechnologyDetails, addTechHistory } from "../database/technology";
 import { Technology, History } from "../types/technology";
 
 export const fetchAllTechnologies = async (published: boolean | null) => {
