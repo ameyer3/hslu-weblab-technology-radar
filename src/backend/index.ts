@@ -2,7 +2,7 @@ import express from "express";
 import { TechnologyRouter } from "./routes/technologyRoutes";
 import { LoginRouter } from "./routes/loginRoutes"
 import cors from "cors";
-const app = express();
+export const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());

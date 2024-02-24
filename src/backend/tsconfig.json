@@ -10,12 +10,13 @@
         "esModuleInterop": true,
     },
     "include": [
-        "lib/**/*.ts"
+        "**/*.ts"
     ],
     "exclude": [
         "node_modules"
     ],
-    "files": [
-        "types.d.ts"
-    ]
+    // "types": [
+    //     "jest",
+    //     "node"
+    // ]
 }
