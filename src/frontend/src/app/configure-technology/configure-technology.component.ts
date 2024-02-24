@@ -41,7 +41,11 @@ export class ConfigureTechnologyComponent {
   constructor(private techService: TechnologyService,
     private dialog: MatDialog) {
     this.allTechnologies$ = this.loadTechnologies$.pipe(switchMap(() => this.techService.getAllTechnologies()));
-
+    console.log("allTech", this.allTechnologies$)
+    console.log("techService", this.techService)
+    console.log("getALl", this.techService.getAllTechnologies())
+    this.techService.getAllTechnologies().subscribe(c => console.log("A", c))
+    this.allTechnologies$.subscribe(c => { console.log(c) })
   }
 
 

@@ -22,4 +22,14 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('Technology Radar');
   });
 
+  it(`should render the toolbar`, () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('mat-toolbar')?.textContent).toContain('Login');
+    expect(compiled.querySelector('mat-toolbar')?.textContent).toContain('Technologies');
+    expect(compiled.querySelector('mat-toolbar')?.textContent).toContain('Configure Technologies');
+
+  });
+
 });

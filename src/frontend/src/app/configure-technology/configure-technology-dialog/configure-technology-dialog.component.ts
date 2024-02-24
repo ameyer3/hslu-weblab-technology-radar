@@ -35,14 +35,14 @@ export class ConfigureTechnologyDialogComponent {
   rings = ["Assess", "Trial", "Adopt", "Hold"];
   categories = ["Techniques", "Tools", "Platforms", "Languages & Frameworks"];
 
+  model: Technology = this.data.technology;
 
   constructor(private techService: TechnologyService,
     private dialog: MatDialogRef<ConfigureTechnologyDialogComponent>,
     @Inject(MAT_DIALOG_DATA) private data: { technology: Technology }) {
-
+    console.log(this.model)
   }
 
-  model: Technology = this.data.technology;
 
   onSubmit(): void {
     console.log(this.model);

@@ -16,9 +16,6 @@ export class TechnologiesComponent {
   public publishedTechnologies$: Observable<Technology[]>
   displayedColumns: string[] = ['name', 'category', 'description', 'ring', 'ringdescription'];
 
-  //order by
-  // filter
-  //sort
   constructor(private techService: TechnologyService) {
     this.publishedTechnologies$ = techService.getAllPublishedTechnologies().pipe(tap(techs => {
       techs.sort(

@@ -10,6 +10,7 @@ mat-toolbar>mat-toolbar-row {
 mat-toolbar>mat-toolbar-row>span>a {
     text-decoration: none;
     color: white;
+    width: 100%;
 }
 
 mat-toolbar>mat-toolbar-row>span>a:hover {
