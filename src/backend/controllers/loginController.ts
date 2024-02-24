@@ -3,6 +3,7 @@ import { login } from "../services/loginService"
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { JWTUser } from "../types/authentication";
+import dotenv from "dotenv"
 
 export const loginUser = async (req: Request, res: Response) => {
     let { username, password } = req.body;
@@ -15,8 +16,7 @@ export const loginUser = async (req: Request, res: Response) => {
         return res.status(403).send("Wrong username or password.");
     }
 
-    // TODO: SECRET
-
+    dotenv.config().parsed;
     let token;
     try {
         //Creating jwt token
@@ -26,7 +26,7 @@ export const loginUser = async (req: Request, res: Response) => {
                 username: user.username,
                 role: user.role
             } as JWTUser,
-            "secretkeyappearshere",
+            String(process.env.SECRET_KEY),
             { expiresIn: "1h" }
         );
         console.log(`User ${user.username} logged in at ${new Date()}`)

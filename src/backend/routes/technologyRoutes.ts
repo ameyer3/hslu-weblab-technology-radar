@@ -1,7 +1,8 @@
 import { NextFunction, Request, Response, Router } from "express";
 import { getAllTechnologies, createNewTechnology, updateTechnology, updatePublishTechnology } from "../controllers/technologyController";
-import jwt from "jsonwebtoken"
+import jwt from "jsonwebtoken";
 import { JWTUser } from "../types/authentication";
+import dotenv from "dotenv";
 
 declare module "express-serve-static-core" {
     export interface Request {
@@ -14,8 +15,9 @@ function authenticateToken(req: Request, res: Response, next: NextFunction) {
     const token = authHeader && authHeader.split(' ')[1]
 
     if (token == null) return res.sendStatus(401)
+    dotenv.config().parsed;
 
-    jwt.verify(token, "secretkeyappearshere" as string, (err: any, user: any) => {
+    jwt.verify(token, process.env.SECRET_KEY as string, (err: any, user: any) => {
         console.log(err)
 
         if (err) return res.sendStatus(403)
