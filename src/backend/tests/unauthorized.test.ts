@@ -3,7 +3,7 @@ import { app } from "../index";
 
 jest.mock('../database/configure')
 
-describe('getPublishedTechnologies', () => {
+describe('not logged in', () => {
     let jwt_token: string;
 
 
