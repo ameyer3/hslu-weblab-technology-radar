@@ -7,7 +7,7 @@
 CREATE TABLE technology 
 (ID SERIAL PRIMARY KEY,
  name VARCHAR(30),
-  category VARCHAR(20), 
+  category VARCHAR(30), 
   ring VARCHAR(20), 
   ringDescription VARCHAR(100), 
   description VARCHAR(100), 
@@ -27,7 +27,7 @@ CREATE TABLE history
 (ID SERIAL PRIMARY KEY,
  technologyId SMALLINT, 
  name VARCHAR(30),
-  category VARCHAR(20), 
+  category VARCHAR(30), 
   ring VARCHAR(20),
    ringdescription VARCHAR(100),
     description VARCHAR(100),  
