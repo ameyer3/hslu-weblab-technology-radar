@@ -51,7 +51,6 @@ export const updatePublishTechnology = async (published: boolean, publishingDate
 
 export const getTechnologyDetails = async (id: number) => {
     const results = await pool.query(`SELECT * FROM technology WHERE id = ${id}`);
-    console.log(results.rows[0]);
     return results.rows[0]
 }
 

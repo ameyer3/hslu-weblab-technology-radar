@@ -13,14 +13,12 @@ describe('getPublishedTechnologies', () => {
     });
 
     it("should fetch all published technologies", async () => {
-        console.log(jwt_token)
         const response = await request(app).get("/api/technologies")
             .set("Authorization", `Bearer ${jwt_token}`)
             .expect(200)
         expect(response.body.length).toEqual(1)
     });
     it("should not fetch upublished technologies", async () => {
-        console.log(jwt_token)
         const response = await request(app).get("/api/technologies")
             .set("Authorization", `Bearer ${jwt_token}`)
             .expect(200)
@@ -28,19 +26,16 @@ describe('getPublishedTechnologies', () => {
     });
 
     it("should not create a new technology", async () => {
-        console.log(jwt_token)
         const response = await request(app).post("/api/technologies")
             .set("Authorization", `Bearer ${jwt_token}`)
             .expect(403)
     });
     it("should not update a  technology", async () => {
-        console.log(jwt_token)
         const response = await request(app).put("/api/technologies")
             .set("Authorization", `Bearer ${jwt_token}`)
             .expect(403)
     });
     it("should not publish a  technology", async () => {
-        console.log(jwt_token)
         const response = await request(app).put("/api/technologies/publish")
             .set("Authorization", `Bearer ${jwt_token}`)
             .expect(403)

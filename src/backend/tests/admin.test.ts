@@ -13,7 +13,6 @@ describe('/api/technologies', () => {
     });
 
     it("should fetch all technologies", async () => {
-        console.log(jwt_token)
         const response = await request(app).get("/api/technologies")
             .set("Authorization", `Bearer ${jwt_token}`)
             .expect(200)

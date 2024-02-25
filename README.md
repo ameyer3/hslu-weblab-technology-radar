@@ -15,10 +15,10 @@ Create a user `admin` with password `password`. Create a database called `techno
 
 ## Usage
 
-Start the frontend:
+Start the frontend while in the `src/frontend` directory:
 ```npm run ng serve```
 
-Start the backend:
+Start the backend while in the `src/backend` directory:
 ```npm run dev```
 
 On port 4200 you can now use the application. To log in, use one of the following users:
@@ -27,3 +27,13 @@ On port 4200 you can now use the application. To log in, use one of the followin
 - tech-lead@tech.com (role: tech-lead)
 
 Each of them uses password `secret`.
+
+## Run tests
+
+Run frontend tests with `nmp run ng test` while in the `src/frontend` directory:
+
+![passing frontend tests](pics/frontend-testing.png)
+
+Run backend tests with `nmp run test` while in the `src/backend` directory:
+
+![passing backend tests](pics/backend-tests.png)

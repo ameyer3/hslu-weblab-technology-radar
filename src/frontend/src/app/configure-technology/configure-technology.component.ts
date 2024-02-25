@@ -41,11 +41,8 @@ export class ConfigureTechnologyComponent {
   constructor(private techService: TechnologyService,
     private dialog: MatDialog) {
     this.allTechnologies$ = this.loadTechnologies$.pipe(switchMap(() => this.techService.getAllTechnologies()));
-    console.log("allTech", this.allTechnologies$)
-    console.log("techService", this.techService)
-    console.log("getALl", this.techService.getAllTechnologies())
-    this.techService.getAllTechnologies().subscribe(c => console.log("A", c))
-    this.allTechnologies$.subscribe(c => { console.log(c) })
+    this.techService.getAllTechnologies().subscribe()
+    this.allTechnologies$.subscribe()
   }
 
 
@@ -53,7 +50,6 @@ export class ConfigureTechnologyComponent {
     if (technology === undefined) {
       technology = { id: 0, name: "", description: "", ringdescription: "", category: "", ring: "", published: false };
     }
-    console.log(technology)
     const dialogRef = this.dialog.open(ConfigureTechnologyDialogComponent, {
       data: { technology },
       width: '70%',

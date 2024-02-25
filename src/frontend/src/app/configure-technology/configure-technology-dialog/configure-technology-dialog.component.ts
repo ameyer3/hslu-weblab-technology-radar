@@ -40,12 +40,10 @@ export class ConfigureTechnologyDialogComponent {
   constructor(private techService: TechnologyService,
     private dialog: MatDialogRef<ConfigureTechnologyDialogComponent>,
     @Inject(MAT_DIALOG_DATA) private data: { technology: Technology }) {
-    console.log(this.model)
   }
 
 
   onSubmit(): void {
-    console.log(this.model);
     if (this.model.id == 0) {
       this.techService.createNewTechnology(this.model).subscribe();
 

@@ -19,7 +19,6 @@ export const createNewTechnology = async (req: Request, res: Response) => {
         return res.status(403).send("Unauthorized");
     }
     const { body } = req;
-    console.log(body)
     if (!body.name || !body.category || !body.description) {
         return res.status(400).send("Missing values");
     }
@@ -103,7 +102,6 @@ export const updatePublishTechnology = async (req: Request, res: Response) => {
 
 export const updateHistory = async (id: number, userId: number) => {
     let tech = await getCurrentTechnology(id);
-    console.log(tech);
     const history: History = {
         "technologyId": id,
         "name": tech.name,
