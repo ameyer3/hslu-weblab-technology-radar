@@ -18,8 +18,9 @@ export const createNewTechnology = async (newTechnology: Technology) => {
             if (error) {
                 throw error
             }
-            return newTechnology;
         })
+    return newTechnology;
+
 
 }
 

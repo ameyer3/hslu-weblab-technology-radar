@@ -8,6 +8,8 @@ export const fetchAllTechnologies = async (published: boolean | null) => {
 
 export const addNewTechnology = async (newTechnology: Technology) => {
     let createdTechnology = await createNewTechnology(newTechnology);
+    console.log("DB", createdTechnology)
+
     return createdTechnology;
 }
 

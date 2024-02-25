@@ -19,22 +19,20 @@ export const createNewTechnology = async (req: Request, res: Response) => {
         return res.status(403).send("Unauthorized");
     }
     const { body } = req;
+    console.log(body)
     if (!body.name || !body.category || !body.description) {
         return res.status(400).send("Missing values");
     }
     if (!categories.includes(body.category)) {
         return res.status(400).send("Value for category is not valid");
-
     }
     if (body.ring && !rings.includes(body.ring)) {
         return res.status(400).send("Value for ring is not valid");
+    }
+    if (body.ring && !body.ringdescription) {
+        return res.status(400).send("If you define a ring, you also need to define a ring description");
 
     }
-    if (body.category)
-        if (body.ring && !body.ringdescription) {
-            return res.status(400).send("If you define a ring, you also need to define a ring description");
-
-        }
     const newTechnology: Technology = {
         "name": body.name,
         "category": body.category,
@@ -47,7 +45,6 @@ export const createNewTechnology = async (req: Request, res: Response) => {
         "published": false,
 
     }
-    console.log(newTechnology);
     const createdTechnology = await addNewTechnology(newTechnology);
     res.status(201).send(createdTechnology);
 }

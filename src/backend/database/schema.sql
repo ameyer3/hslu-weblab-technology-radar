@@ -43,6 +43,13 @@ CREATE TABLE history
         REFERENCES users(id));
 
 
-INSERT INTO users (username, password, role) VALUES ('test@tech.com', '$2a$10$wqj5nsRWX5MlpGYPoeQ4ruMtNtT2zAfsoLhFj8ImWHCWNXL1ZQUhC', 'CTO');
+INSERT INTO users (username, password, role) VALUES ('cto@tech.com', '$2a$10$wqj5nsRWX5MlpGYPoeQ4ruMtNtT2zAfsoLhFj8ImWHCWNXL1ZQUhC', 'CTO');
 INSERT INTO users (username, password, role) VALUES ('normal@tech.com', '$2a$10$wqj5nsRWX5MlpGYPoeQ4ruMtNtT2zAfsoLhFj8ImWHCWNXL1ZQUhC', 'user');
 INSERT INTO users (username, password, role) VALUES ('tech-lead@tech.com', '$2a$10$wqj5nsRWX5MlpGYPoeQ4ruMtNtT2zAfsoLhFj8ImWHCWNXL1ZQUhC', 'Tech Lead');
+
+INSERT INTO technology (name, category,  ring, ringdescription, description, creationDate, creationAuthor, updateAuthor, published, publishingDate)
+VALUES ('Kubernetes', 'Tools', 'Trial', 'Lets have a look', 'Make some Clusters', NOW(), 1, 1, false, NULL);
+INSERT INTO technology (name, category,  ring, ringdescription, description, creationDate, creationAuthor, updateAuthor, published, publishingDate)
+VALUES ('Argo CD', 'Tools', 'Adopt', 'Seems pretty good', 'I dont know what the is', NOW(), 1, 1, true, NOW());
+INSERT INTO technology (name, category,  ring, ringdescription, description, creationDate, creationAuthor, updateAuthor, published, publishingDate)
+VALUES ('ToUpdate', 'Tools', 'Adopt', 'Seems pretty good', 'A test description', NOW(), 1, 1, false, NOW());
