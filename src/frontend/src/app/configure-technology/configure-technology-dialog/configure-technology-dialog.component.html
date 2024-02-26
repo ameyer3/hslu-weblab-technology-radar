@@ -32,7 +32,7 @@
             <input matInput id="description" required [(ngModel)]="model.description" name="description" />
         </mat-form-field>
 
-
+        <div *ngIf="errorMessage">{{errorMessage}}</div>
         <button mat-flat-button color="primary" type="submit">Save Technology</button>
 
     </form>

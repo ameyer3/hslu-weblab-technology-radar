@@ -36,6 +36,7 @@ export class ConfigureTechnologyDialogComponent {
   categories = ["Techniques", "Tools", "Platforms", "Languages & Frameworks"];
 
   model: Technology = this.data.technology;
+  errorMessage: String = "";
 
   constructor(private techService: TechnologyService,
     private dialog: MatDialogRef<ConfigureTechnologyDialogComponent>,
@@ -45,13 +46,26 @@ export class ConfigureTechnologyDialogComponent {
 
   onSubmit(): void {
     if (this.model.id == 0) {
-      this.techService.createNewTechnology(this.model).subscribe();
+      this.techService.createNewTechnology(this.model).subscribe({
+        next: () => {
+          this.dialog.close()
+        },
+        error: (err) => {
+          this.errorMessage = err.error
+        }
+      });
 
     }
     else {
-      this.techService.updateTechnology(this.model).subscribe();
+      this.techService.updateTechnology(this.model).subscribe({
+        next: () => {
+          this.dialog.close()
+        },
+        error: (err) => {
+          this.errorMessage = err.error
+        }
+      });
     }
-    this.dialog.close()
   }
 
 
