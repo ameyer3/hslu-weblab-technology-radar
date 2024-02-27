@@ -52,4 +52,4 @@ VALUES ('Kubernetes', 'Tools', 'Trial', 'Lets have a look', 'Make some Clusters'
 INSERT INTO technology (name, category,  ring, ringdescription, description, creationDate, creationAuthor, updateAuthor, published, publishingDate)
 VALUES ('Argo CD', 'Tools', 'Adopt', 'Seems pretty good', 'I dont know what the is', NOW(), 1, 1, true, NOW());
 INSERT INTO technology (name, category,  ring, ringdescription, description, creationDate, creationAuthor, updateAuthor, published, publishingDate)
-VALUES ('ToUpdate', 'Tools', 'Adopt', 'Seems pretty good', 'A test description', NOW(), 1, 1, false, NOW());
+VALUES ('ToUpdate', 'Tools', 'Adopt', 'Seems pretty good', 'A test description', NOW(), 1, 1, false, NULL);
