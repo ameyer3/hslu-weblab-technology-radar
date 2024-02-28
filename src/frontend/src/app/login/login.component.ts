@@ -20,14 +20,23 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   hide = true;
   model: User = { username: "", password: "" }
+  errorMessage: String = "";
 
   constructor(private loginService: LoginService, private router: Router) {
 
   }
 
   onSubmit(user: User): void {
-    this.loginService.loginUser(user).subscribe(() => {
-      this.router.navigate(["/technologies"]);
+    this.loginService.loginUser(user).subscribe({
+      next: () => {
+        this.router.navigate(["/technologies"]);
+      },
+
+      error: (err) => {
+        this.errorMessage = err.error
+      }
     });
   }
+
+
 }
