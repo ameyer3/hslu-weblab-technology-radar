@@ -7,7 +7,7 @@ describe('not logged in', () => {
     let jwt_token: string;
 
 
-    it("should fetch all published technologies", async () => {
+    it("should not fetch any technologies", async () => {
         const response = await request(app).get("/api/technologies")
             .set("Authorization", `Bearer ${jwt_token}`)
             .expect(403)
